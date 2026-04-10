@@ -1,0 +1,30 @@
+openapi: 3.1.0
+info:
+  title: 5H Protocol API
+  version: 0.2.0
+  description: Reference implementation of the 5H Protocol (Grok-led Branch 1)
+
+paths:
+  /v1/proxy/forward:
+    post:
+      summary: Forward a contact request through an AI proxy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactRequest"
+      responses:
+        '200':
+          description: Proxy response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProxyResponse"
+
+components:
+  schemas:
+    ContactRequest:
+      $ref: "./schemas/ai-proxy.json#/definitions/ContactRequest"
+    ProxyResponse:
+      $ref: "./schemas/ai-proxy.json#/definitions/ProxyResponse"

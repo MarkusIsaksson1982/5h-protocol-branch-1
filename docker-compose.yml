@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  rust-core:
+    build: ./implementation/rust-core
+    ports:
+      - "8080:8080"
+    depends_on:
+      - python-proxy
+    environment:
+      - RUST_LOG=info
+    command: cargo run --example full_flow
+    volumes:
+      - ./spec:/spec:ro
+
+  python-proxy:
+    build: ./implementation/python-proxy
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - ./spec:/spec:ro
+
+networks:
+  default:
+    driver: bridge

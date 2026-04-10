@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["context", "goals", "constraints", "audit_log"],
+  "properties": {
+    "context": { "type": "object" },
+    "goals": { "type": "array", "items": { "type": "string" } },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "memory": { "type": "object" },
+    "audit_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "layer": { "type": "string" },
+          "input_hash": { "type": "string" },
+          "output_hash": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      }
+    }
+  }
+}
